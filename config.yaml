@@ -1,0 +1,27 @@
+company:
+  name: "MY COMPANY SIA"
+  registration_number: "40000000000"
+
+banks:
+  - name: swedbank
+    enabled: true
+    iban: "LV00HABA0000000000000"
+
+  - name: seb
+    enabled: false
+    iban: "LV00UNLA0000000000000"
+
+accounting:
+  target: zalktis
+
+  zalktis:
+    export_dir: "./data/exported/zalktis"
+
+  jumis:
+    export_dir: "./data/exported/jumis"
+
+pipeline:
+  default_days: 1
+  archive_downloads: true
+  duplicate_protection: true
+  dry_run: true
