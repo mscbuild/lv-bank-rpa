@@ -1,20 +1,22 @@
 from abc import ABC, abstractmethod
 from datetime import date
-from typing import List
 
-from ..models import Transaction
+from app.domain.models import Statement
+from app.domain.enums import BankName
 
 
 class BankAdapter(ABC):
 
+    @property
     @abstractmethod
-    def get_transactions(
+    def bank_name(self) -> BankName:
+        raise NotImplementedError
+
+    @abstractmethod
+    def get_statement(
         self,
         account_iban: str,
         date_from: date,
-        date_to: date
-    ) -> List[Transaction]:
-        """
-        Получить банковские операции за период.
-        """
+        date_to: date,
+    ) -> Statement:
         raise NotImplementedError
