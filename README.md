@@ -904,14 +904,143 @@ A failed job should be safely retryable.
 Because transaction fingerprints are deterministic, retrying the same statement should not create duplicate accounting transactions.
 
 ## 38. Production Readiness Checklist
-Application
- ( [ ] ) Configuration validation
- ( [ ] ) Structured logging
- Error classification
- Retry policy
- Timeouts
- Idempotency
- Reconciliation
- Audit trail
- Dry-run mode
+# Application
+- [ ] Configuration validation
+- [ ] Structured logging
+- [ ] Error classification
+- [ ] Retry policy
+- [ ] Timeouts
+- [ ] Idempotency
+- [ ] Reconciliation
+- [ ] Audit trail
+- [ ] Dry-run mode
+# Bank integrations
+- [ ] Official API/Gateway contract
+- [ ] TLS validation
+- [ ] Client certificate handling
+- [ ] Authentication tests
+- [ ] XML schema validation
+- [ ] Error mapping
+- [ ] Rate-limit handling
+# Accounting
+- [ ] Zalktis format confirmed
+- [ ] Zalktis import tested
+- [ ] Jumis format confirmed
+- [ ] Duplicate protection
+- [ ] Encoding tests
+- [ ] Decimal precision tests
+# Security
+- [ ] No secrets in Git
+- [ ] Certificate permissions
+- [ ] Encrypted backups
+- [ ]Secret rotation procedure
+- [ ] Audit logging
+- [ ] Dependency scanning
+# Operations
+- [ ] Windows scheduler
+- [ ] Linux scheduler
+- [ ] Backup
+- [ ] Monitoring
+- [ ] Alerting
+- [ ] Recovery procedure
+
+## 39. Development Workflow
+Clone repository:
+~~~bash
+git clone https://github.com/mscbuild/lv-bank-rpa/
+cd lv-bank-rpa
+~~~
+Create environment:
+~~~bash
+python -m venv .venv
+~~~
+## Activate:
+
+# Windows
+~~~bash
+.venv\Scripts\Activate.ps1
+~~~
+# Linux/macOS
+~~~bash
+source .venv/bin/activate
+~~~
+Install:
+~~~bash
+pip install -e ".[dev]"
+~~~
+Run tests:
+~~~bash
+pytest
+~~~
+Run linter:
+~~~bash
+ruff check .
+~~~
+Run type checker:
+~~~bash
+mypy app
+~~~
+Run application:
+~~~bash
+lv-bank-rpa health
+~~~
+
+## 40. Git Workflow
+Recommended branch model:
+~~~bash
+main
+ │
+ ├── develop
+ │
+ ├── feature/swedbank-api
+ │
+ ├── feature/seb-api
+ │
+ ├── feature/zalktis-export
+ │
+ └── fix/reconciliation
+~~~
+
+Commit examples:
+~~~bash
+feat(bank): add Swedbank gateway adapter
+feat(bank): add SEB statement parser
+feat(accounting): add Zalktis exporter
+feat(core): add transaction idempotency
+fix(reconciliation): handle debit sign
+test(bank): add CAMT fixtures
+security: harden certificate validation
+docs: update deployment guide
+~~~
+
+## 41. Versioning
+The project follows Semantic Versioning:
+~~~bash
+MAJOR.MINOR.PATCH
+~~~
+Example:
+~~~bash
+0.1.0
+0.2.0
+1.0.0
+1.0.1
+~~~
+Before 1.0.0, API and database structures may change.
+
+## 42. Release Criteria
+A production release should require:
+~~~bash
+✓ all tests pass
+✓ lint passes
+✓ type checking passes
+✓ security scan passes
+✓ bank contract tests pass
+✓ accounting import tested
+✓ reconciliation tested
+✓ backup tested
+✓ recovery tested
+✓ documentation updated
+~~~
+## 43. License
+The project license should be selected before the first public release. `Apache-2.0`
 
