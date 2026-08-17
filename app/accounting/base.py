@@ -1,8 +1,7 @@
 from abc import ABC, abstractmethod
 from pathlib import Path
-from typing import List
 
-from ..models import Transaction
+from app.domain.models import Transaction
 
 
 class AccountingAdapter(ABC):
@@ -10,7 +9,8 @@ class AccountingAdapter(ABC):
     @abstractmethod
     def export(
         self,
-        transactions: List[Transaction],
-        output_dir: Path
+        transactions: list[Transaction],
+        destination: Path,
     ) -> Path:
         raise NotImplementedError
+
