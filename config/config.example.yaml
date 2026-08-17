@@ -1,0 +1,12 @@
+application:
+  environment: development
+  timezone: Europe/Riga
+
+database:
+  url: sqlite:///./data/rpa.sqlite3
+
+accounting:
+  provider: zalktis
+
+  zalktis:
+    output_directory: ./data/outgoing/zalktis
