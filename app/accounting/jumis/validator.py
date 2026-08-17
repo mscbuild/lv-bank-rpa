@@ -1,8 +1,7 @@
-from pathlib import Path
-
 from __future__ import annotations
 
 from decimal import Decimal
+from pathlib import Path
 
 from app.domain.models import Transaction
 
@@ -15,9 +14,10 @@ class JumisValidator:
     """
     Validates canonical transactions before Jumis export.
 
-    This validates the internal domain model.
-    Exact Jumis import-format validation should be implemented
-    according to the format supported by the target Jumis version.
+    This validator checks the internal domain model.
+    Exact Jumis import-format validation should additionally
+    be implemented according to the format supported by the
+    target Jumis version.
     """
 
     SUPPORTED_CURRENCIES = {"EUR"}
@@ -29,12 +29,15 @@ class JumisValidator:
         self._validate_iban(
             transaction.account_iban
         )
+
         self._validate_currency(
             transaction.currency
         )
+
         self._validate_amount(
             transaction.amount
         )
+
         self._validate_transaction_id(
             transaction.transaction_id
         )
@@ -60,14 +63,41 @@ class JumisValidator:
                 transaction
             )
 
-            if transaction.transaction_id in transaction_ids:
+            transaction_id = (
+                transaction.transaction_id
+            )
+
+            if transaction_id in transaction_ids:
                 raise JumisValidationError(
                     "Duplicate transaction ID: "
-                    f"{transaction.transaction_id}"
+                    f"{transaction_id}"
                 )
 
             transaction_ids.add(
-                transaction.transaction_id
+                transaction_id
+            )
+
+    @staticmethod
+    def validate_output_path(
+        destination: Path,
+    ) -> None:
+        """
+        Validate the destination path used by JumisExporter.
+        """
+
+        if destination.suffix.lower() != ".csv":
+            raise JumisValidationError(
+                "Jumis output must be a CSV file."
+            )
+
+        if destination.name.startswith("."):
+            raise JumisValidationError(
+                "Hidden files are not valid export targets."
+            )
+
+        if destination.name.strip() == "":
+            raise JumisValidationError(
+                "Output filename cannot be empty."
             )
 
     @staticmethod
@@ -100,7 +130,9 @@ class JumisValidator:
         cls,
         currency: str,
     ) -> None:
-        if currency.upper() not in cls.SUPPORTED_CURRENCIES:
+        normalized = currency.upper()
+
+        if normalized not in cls.SUPPORTED_CURRENCIES:
             raise JumisValidationError(
                 f"Unsupported currency: {currency}"
             )
@@ -122,6 +154,12 @@ class JumisValidator:
         if amount == Decimal("0"):
             raise JumisValidationError(
                 "Transaction amount cannot be zero."
+            )
+
+        if amount.as_tuple().exponent < -2:
+            raise JumisValidationError(
+                f"Amount has more than 2 decimal places: "
+                f"{amount}"
             )
 
     @staticmethod
