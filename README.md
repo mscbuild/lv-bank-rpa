@@ -933,7 +933,7 @@ Because transaction fingerprints are deterministic, retrying the same statement 
 - [ ] No secrets in Git
 - [ ] Certificate permissions
 - [ ] Encrypted backups
-- [ ]Secret rotation procedure
+- [ ] Secret rotation procedure
 - [ ] Audit logging
 - [ ] Dependency scanning
 # Operations
@@ -1042,5 +1042,5 @@ A production release should require:
 ✓ documentation updated
 ~~~
 ## 43. License
-The project license should be selected before the first public release. `Apache-2.0`
+Distributed under the `Apache-2.0`. See LICENSE for more information.  
 
