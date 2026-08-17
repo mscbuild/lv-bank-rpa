@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+*.key
+*.pem
+*.p12
+*.pfx
+
+secrets/
+certificates/
+
+# Database
+*.sqlite
+*.sqlite3
+*.db
+
+# Application data
+data/incoming/*
+data/processing/*
+data/outgoing/*
+data/archive/*
+data/failed/*
+
+!data/incoming/.gitkeep
+!data/processing/.gitkeep
+!data/outgoing/.gitkeep
+!data/archive/.gitkeep
+!data/failed/.gitkeep
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
