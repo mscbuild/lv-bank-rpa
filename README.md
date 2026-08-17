@@ -303,65 +303,48 @@ In production, before implementing `JumisAdapter`, you must specify:
 ~~~bash
 
 lv-bank-rpa/
-│
 ├── app/
 │   ├── __init__.py
-│   │
 │   ├── cli.py
 │   ├── config.py
 │   ├── logging.py
 │   ├── exceptions.py
 │   │
 │   ├── domain/
+│   │   ├── __init__.py
 │   │   ├── models.py
 │   │   ├── enums.py
 │   │   ├── validators.py
 │   │   └── fingerprints.py
 │   │
 │   ├── banks/
-│   │   ├── base.py
-│   │   ├── swedbank/
-│   │   │   ├── client.py
-│   │   │   ├── auth.py
-│   │   │   ├── parser.py
-│   │   │   └── schemas/
-│   │   └── seb/
-│   │       ├── client.py
-│   │       ├── auth.py
-│   │       ├── parser.py
-│   │       └── schemas/
+│   │   ├── __init__.py
+│   │   └── base.py
 │   │
 │   ├── accounting/
+│   │   ├── __init__.py
 │   │   ├── base.py
-│   │   ├── zalktis/
-│   │   │   ├── exporter.py
-│   │   │   ├── validator.py
-│   │   │   └── schemas/
-│   │   └── jumis/
-│   │       ├── exporter.py
-│   │       └── validator.py
+│   │   └── zalktis/
+│   │       ├── __init__.py
+│   │       └── exporter.py
 │   │
 │   ├── persistence/
+│   │   ├── __init__.py
 │   │   ├── database.py
-│   │   ├── repositories.py
-│   │   └── migrations/
+│   │   └── repositories.py
 │   │
 │   ├── services/
+│   │   ├── __init__.py
 │   │   ├── import_service.py
 │   │   ├── export_service.py
-│   │   ├── reconciliation.py
-│   │   └── scheduler.py
+│   │   └── reconciliation.py
 │   │
 │   └── infrastructure/
-│       ├── http.py
-│       ├── filesystem.py
-│       └── secrets.py
+│       ├── __init__.py
+│       └── filesystem.py
 │
 ├── tests/
-│   ├── unit/
-│   ├── integration/
-│   ├── fixtures/
-│   └── contract/
+│   └── unit/
 │
 ├── data/
 │   ├── incoming/
@@ -371,29 +354,14 @@ lv-bank-rpa/
 │   └── failed/
 │
 ├── config/
-│   ├── config.example.yaml
-│   └── schemas/
-│
-├── scripts/
-│   ├── install-windows.ps1
-│   ├── install-linux.sh
-│   └── backup.sh
-│
-├── docker/
-│   ├── Dockerfile
-│   └── docker-compose.yml
-│
-├── .github/
-│   └── workflows/
-│       ├── ci.yml
-│       └── security.yml
+│   └── config.example.yaml
 │
 ├── .env.example
 ├── .gitignore
 ├── pyproject.toml
 ├── README.md
-├── CHANGELOG.md
 └── LICENSE
+
 ~~~
 
 ## Bank Certificates
