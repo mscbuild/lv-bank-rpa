@@ -1,27 +1,44 @@
-company:
-  name: "MY COMPANY SIA"
-  registration_number: "40000000000"
+application:
+  environment: production
+  timezone: Europe/Riga
+
+database:
+  url: ${DATABASE_URL}
 
 banks:
-  - name: swedbank
-    enabled: true
-    iban: "LV00HABA0000000000000"
 
-  - name: seb
-    enabled: false
-    iban: "LV00UNLA0000000000000"
+  swedbank:
+    enabled: true
+
+    accounts:
+      - iban: ${SWEDBANK_IBAN}
+
+    certificate:
+      cert: ${SWEDBANK_CERT}
+      key: ${SWEDBANK_KEY}
+
+  seb:
+    enabled: true
+
+    accounts:
+      - iban: ${SEB_IBAN}
+
+    certificate:
+      cert: ${SEB_CERT}
+      key: ${SEB_KEY}
 
 accounting:
-  target: zalktis
+  provider: zalktis
 
   zalktis:
-    export_dir: "./data/exported/zalktis"
+    output_directory: ./data/outgoing/zalktis
 
-  jumis:
-    export_dir: "./data/exported/jumis"
+scheduler:
+  enabled: true
+  interval_minutes: 60
 
-pipeline:
-  default_days: 1
-  archive_downloads: true
-  duplicate_protection: true
+security:
+  verify_tls: true
+
+runtime:
   dry_run: true
