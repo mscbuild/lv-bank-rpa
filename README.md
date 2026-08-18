@@ -1,4 +1,23 @@
+[repo]: https://github.com/mscbuild/lv-bank-rpa/
+[demo]: https://mscbuild.github.io/lv-bank-rpa/
+
+<div align="center">
+
 # LV Bank RPA — Project Specification
+
+</div>
+
+<div align="center">
+
+ ![](https://komarev.com/ghpvc/?username=mscbuild) 
+ ![](https://img.shields.io/github/license/mscbuild/lv-bank-rpa) 
+ ![](https://img.shields.io/badge/PRs-Welcome-green)
+ ![](https://img.shields.io/github/languages/code-size/mscbuild/lv-bank-rpa)
+![](https://img.shields.io/badge/code%20style-python-green)
+![](https://img.shields.io/github/stars/mscbuild)
+![](https://img.shields.io/badge/Topic-Github-lighred)
+![](https://img.shields.io/website?url=https%3A%2F%2Fgithub.com%2Fmscbuild)
+</div>
 
 > Production-oriented local RPA platform for automating bank statement retrieval, validation, reconciliation and import preparation for Latvian accounting systems.
 
