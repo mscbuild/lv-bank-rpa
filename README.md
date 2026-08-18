@@ -1063,5 +1063,5 @@ A production release should require:
 ✓ documentation updated
 ~~~
 ## 43. License
-Distributed under the `Apache-2.0`. See LICENSE for more information.  
+Distributed under the `Apache-2.0`. See the [LICENSE](LICENSE) file for details.  
 
